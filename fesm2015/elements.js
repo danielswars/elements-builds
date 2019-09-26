@@ -1,5 +1,5 @@
 /**
- * @license Angular v9.0.0-next.8+6.sha-e9867e8.with-local-changes
+ * @license Angular v9.0.0-next.7+26.sha-ac76ed1
  * (c) 2010-2019 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -819,7 +819,12 @@ function createCustomElement(component, config) {
              * @param {?} newValue
              * @return {?}
              */
-            function (newValue) { this.ngElementStrategy.setInputValue(property, newValue); }),
+            function (newValue) {
+                if (!this.ngElementStrategy) {
+                    this.ngElementStrategy = strategyFactory.create(config.injector);
+                }
+                this.ngElementStrategy.setInputValue(property, newValue);
+            }),
             configurable: true,
             enumerable: true,
         });
@@ -835,7 +840,7 @@ function createCustomElement(component, config) {
  * \@publicApi
  * @type {?}
  */
-const VERSION = new Version('9.0.0-next.8+6.sha-e9867e8.with-local-changes');
+const VERSION = new Version('9.0.0-next.7+26.sha-ac76ed1');
 
 /**
  * @fileoverview added by tsickle
